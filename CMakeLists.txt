@@ -9,7 +9,14 @@ set(CMAKE_C_FLAGS_DEBUG "-g")
 set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS} -march=native")
 
 add_library(
+  spookyhash-s
+  STATIC
+  spookyhash.c
+  )
+
+add_library(
   spookyhash
+  SHARED
   spookyhash.c
   )
 
@@ -21,5 +28,5 @@ add_executable(
 target_link_libraries(
   spookyhash-test
   spookyhash
-  ${CMAKE_THREAD_LIBS_INIT}
+  # ${CMAKE_THREAD_LIBS_INIT}
 )
