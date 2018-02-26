@@ -92,6 +92,32 @@ static inline uint32_t spookyhash32(const void* message, size_t length,
   return (uint32_t)hash1;
 }
 
+
+// ----------------------------------------
+// Default seeded versions for easily calling from LuaJIT
+
+// Test seed values for Urumi
+const uint64_t ur_hash_seed_1 = UINT64_C(0x23a23cf5033c3c81);
+const uint64_t ur_hash_seed_2 = UINT64_C(0xb3816f6a2c68e530);
+
+// @brief Hash a single message in one call, return 64-bit output.
+//
+// @param message message to hash
+// @param length length of message in bytes
+// @param seed seed
+uint64_t spookyhash64_s(const void* message, size_t length);
+
+// 32 bit version
+// @brief hash a single message in one call, produce 32-bit output
+//
+// @param message message to hash
+// @param length length of message in bytes
+// @param seed seed
+uint32_t spookyhash32_s(const void* message, size_t length);
+
+// ----------------------------------------
+
+
 // @brief initialize the context of a spookyhash
 //
 // @param seed1 any 64-bit value will do, including 0

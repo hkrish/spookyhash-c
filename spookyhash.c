@@ -363,3 +363,27 @@ void spookyhash_final(uint64_t* hash1, uint64_t* hash2, spooky_state* state) {
   *hash2 = h1;
 }
 
+// ----------------------------------------
+// Default seeded versions for easily calling from LuaJIT
+
+// 64bit version
+uint64_t spookyhash64_s(const void* message, size_t length) {
+
+  uint64_t hash1 = ur_hash_seed_1;
+  uint64_t hash2 = ur_hash_seed_2;
+
+  spookyhash128(message, length, &hash1, &hash2);
+
+  return hash1;
+}
+
+// 32 bit version
+uint32_t spookyhash32_s(const void* message, size_t length) {
+
+    uint64_t hash1 = ur_hash_seed_1;
+    uint64_t hash2 = ur_hash_seed_2;
+
+  spookyhash128(message, length, &hash1, &hash2);
+
+  return (uint32_t)hash1;
+}
